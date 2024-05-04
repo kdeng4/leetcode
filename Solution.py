@@ -253,3 +253,19 @@ class Solution:
             if curr_list.count(i) > 1:
                 return False
         return True
+
+    def longestCommonPrefix(self, strs: list[str]) -> str:
+        ans = ''
+        for idx, curr_str in enumerate(strs):
+            if len(ans) == 0:
+                if idx < 1:
+                    ans = curr_str
+                else:
+                    return ans
+            else:
+                while len(ans) > 0:
+                    if ans in curr_str:
+                        break
+                    else:
+                        ans = ans[:-1]
+        return ans
