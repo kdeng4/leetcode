@@ -226,3 +226,30 @@ class Solution:
             return left_pos, right_pos
         else:
             return -1, -1
+
+
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
+        # CHECK HORIZONTAL
+        for test_line in board:
+            if not self._isValidSudoku_checkRec(test_line):
+                return False
+        # CHECK VERTICAL
+        for i in range(len(board)):
+            test_line = [x[i] for x in board]
+            if not self._isValidSudoku_checkRec(test_line):
+                return False
+        # CHECK SMALL SQUARE
+        for i in [0, 3, 6]:
+            for j in [0, 3, 6]:
+                test_line = sum([x[j:j+3] for x in board[i: i+3]],[])
+                if not self._isValidSudoku_checkRec(test_line):
+                    return False
+        return True
+
+
+    def _isValidSudoku_checkRec(self, curr_list:list[str]) -> bool:
+        list_to = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        for i in list_to:
+            if curr_list.count(i) > 1:
+                return False
+        return True
