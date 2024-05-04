@@ -28,6 +28,13 @@ def test_isValidSudoku():
     print(output)
 
 
+def test_longestCommonPrefix():
+    solution = Solution()
+    input = ["c","acc","ccc"]
+    output = solution.longestCommonPrefix(input)
+    print(output)
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_isValidSudoku()
+    test_longestCommonPrefix()

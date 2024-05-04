@@ -255,17 +255,17 @@ class Solution:
         return True
 
     def longestCommonPrefix(self, strs: list[str]) -> str:
-        total_count, string_rec = [], []
-        for idx, curr_str in enumerate(strs):
-            for i in range(len(curr_str)):
-                if curr_str[: i+1] not in string_rec:
-                    string_rec.append(curr_str[: i+1])
-                    total_count.append(0)
+        ans = ''
+        for idx, str in enumerate(strs):
+            if len(ans) == 0:
+                if idx < 1:
+                    ans = str
                 else:
-                    curr_idx = string_rec.index(curr_str[:i+1])
-                    total_count[curr_idx] += 1
-        most_common = max(total_count)
-        if most_common == 0:
-            return ''
-        most_common_rec = [i for i, x in enumerate(total_count) if x == most_common]
-        return string_rec[most_common_rec[-1]]
+                    return ans
+            else:
+                while len(ans) > 0:
+                    if ans in str[:len(ans)]:
+                        break
+                    else:
+                        ans = ans[:-1]
+        return ans
