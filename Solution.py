@@ -254,6 +254,7 @@ class Solution:
                 return False
         return True
 
+
     def longestCommonPrefix(self, strs: list[str]) -> str:
         ans = ''
         for idx, str in enumerate(strs):
@@ -269,3 +270,74 @@ class Solution:
                     else:
                         ans = ans[:-1]
         return ans
+
+    def isValid(self, word: str) -> bool:
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        consonant = "bcdfghjklmnpqrstvwxyz"
+        digits = ['0','1','2','3','4','5','6','7','8','9']
+
+        if len(word) < 3:
+            return False
+        has_v, has_c = False, False
+        for char in word:
+            if char.lower() in vowels:
+                has_v = True
+            elif char.lower() in consonant:
+                has_c = True
+            elif char.lower() not in digits:
+                return False
+        if has_c and has_v:
+            return True
+        return False
+
+    def minimumOperationsToMakeKPeriodic(self, word: str, k: int) -> int:
+        counter, segments = [], []
+        for i in range(0, len(word), k):
+            seg = word[i: i + k]
+            if seg in segments:
+                seg_idx = segments.index(seg)
+                counter[seg_idx] += 1
+            else:
+                segments.append(seg)
+                counter.append(1)
+        return len(word) // k - max(counter)
+
+    def minAnagramLength(self, s: str) -> int:
+        l = r = 0
+        l_opt = r_opt = -1
+        for idx in range(len(s)):
+            r = idx
+            if s[r] in s[l:r]:
+                if (r - l) >= (r_opt - l_opt):
+                    l_opt, r_opt = l, r
+                l = idx
+        if r_opt == -1:
+            l_opt = 0
+            r_opt = len(s)
+        return r_opt - l_opt
+
+    def minCostToEqualizeArray(self, nums: list[int], cost1: int, cost2: int) -> int:
+        # CONSIDER VALUE OF THE COST
+        cost_2_valuable = False
+        if cost1 * 2 >= cost2:
+            cost_2_valuable = True
+        cost_so_far = 0
+        target_num = max(nums)
+        while min(nums) < target_num:
+            change_pending = len(nums) - nums.count(target_num)
+            if cost_2_valuable and change_pending > 1:
+                cost_so_far += cost2
+                counter = 0
+                for i in range(len(nums)):
+                    if nums[i] < target_num:
+                        nums[i] += 1
+                        counter += 1
+                    if counter > 1:
+                        break
+            else:
+                cost_so_far += cost1
+                idx_min = nums.index(min(nums))
+                nums[idx_min] += 1
+            if len(nums) > 2 and len(nums) - nums.count(target_num) == 1 and (target_num - min(nums)) * cost1 > len(nums) * 2 * cost2:
+                target_num += 1
+        return cost_so_far
