@@ -303,6 +303,7 @@ class Solution:
         return len(word) // k - max(counter)
 
     def minAnagramLength(self, s: str) -> int:
+        #TODO: FIX HERE
         l = r = 0
         l_opt = r_opt = -1
         for idx in range(len(s)):
@@ -338,6 +339,7 @@ class Solution:
                 cost_so_far += cost1
                 idx_min = nums.index(min(nums))
                 nums[idx_min] += 1
+            #TODO: FIX HERE
             if len(nums) > 2 and len(nums) - nums.count(target_num) == 1 and (target_num - min(nums)) * cost1 > len(nums) * 2 * cost2:
                 target_num += 1
         return cost_so_far
