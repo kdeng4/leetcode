@@ -343,3 +343,16 @@ class Solution:
             if len(nums) > 2 and len(nums) - nums.count(target_num) == 1 and (target_num - min(nums)) * cost1 > len(nums) * 2 * cost2:
                 target_num += 1
         return cost_so_far
+
+
+    def findRelativeRanks(self, score: list[int]) -> list[str]:
+        randed_scores = score.copy()
+        randed_scores.sort(reverse=True)
+        ans = []
+        ranking_name = ["Gold Medal", "Silver Medal", "Bronze Medal"]
+        for sc in score:
+            if randed_scores.index(sc) < len(ranking_name):
+                ans.append(ranking_name[randed_scores.index(sc)])
+            else:
+                ans.append(str(randed_scores.index(sc) + 1))
+        return ans

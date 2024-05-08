@@ -93,6 +93,21 @@ def test_minCostToEqualizeArray():
     out = s.minCostToEqualizeArray(nums, cost1, cost2)
     print(f'CORRECT ANS: SOMETHING, GOT {out}')
 
+
+def test_findRelativeRanks():
+    solution = Solution()
+    input = [5, 4, 3, 2, 1]
+    output = solution.findRelativeRanks(score=input)
+    print(output)
+
+    input = [10, 3, 8, 9, 4]
+    output = solution.findRelativeRanks(score=input)
+    print(output)
+
+    input = [10, 3]
+    output = solution.findRelativeRanks(score=input)
+    print(output)
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_minCostToEqualizeArray()
+    test_findRelativeRanks()
