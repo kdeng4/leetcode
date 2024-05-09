@@ -356,3 +356,13 @@ class Solution:
             else:
                 ans.append(str(randed_scores.index(sc) + 1))
         return ans
+
+
+    def maximumHappinessSum(self, happiness: list[int], k: int) -> int:
+        happiness.sort()
+        select_count = 0
+        total_happiness = 0
+        while select_count < k:
+            total_happiness += max((happiness[-select_count - 1] - select_count), 0)
+            select_count += 1
+        return total_happiness

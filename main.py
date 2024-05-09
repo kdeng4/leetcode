@@ -108,6 +108,19 @@ def test_findRelativeRanks():
     output = solution.findRelativeRanks(score=input)
     print(output)
 
+
+def test_maximumHappinessSum():
+    solution = Solution()
+    happiness, k = [1,2,3], 2
+    output = solution.maximumHappinessSum(happiness, k)
+    print(f'INPUT: HAPPINESS = {happiness}, K = {k}')
+    print(f'OUTPUT: {output}')
+
+    happiness, k = [1,1,1,1], 2
+    output = solution.maximumHappinessSum(happiness, k)
+    print(f'INPUT: HAPPINESS = {happiness}, K = {k}')
+    print(f'OUTPUT: {output}')
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_findRelativeRanks()
+    test_maximumHappinessSum()
